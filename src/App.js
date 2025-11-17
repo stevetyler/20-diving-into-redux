@@ -10,7 +10,7 @@ function App() {
   return (
     <Fragment>
         <Header />
-        <Counter />
+        {isAuthenticated && <Counter />}
         {!isAuthenticated && <Auth />}
     </Fragment>
   );
