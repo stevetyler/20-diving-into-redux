@@ -1,25 +1,26 @@
 import classes from './Counter.module.css';
 import { useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { counterActions } from '../store/index';
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector(state => state.counter); // setting up subscription to get state from Redux store
-  const showCounter = useSelector(state => state.showCounter);
+  const counter = useSelector(state => state.counter.value); // setting up subscription to get state from Redux store
+  const showCounter = useSelector(state => state.counter.showCounter);
 
   const incrementHandler = () => {
-    dispatch({ type: 'increment' });
+    dispatch(counterActions.increment()); // why call as function?  // dispatching an action to the Redux store
   };
 
   const increaseHandler = () => {
-    dispatch({ type: 'increase', amount: 5 });
+    dispatch(counterActions.increase(5)); // {type: SOME_UNIQUE_IDENTIFIER, payload: 5 }
   };
   const decrementHandler = () => {
-    dispatch({ type: 'decrement' });
+    dispatch(counterActions.decrement());
   }; 
 
   const toggleCounterHandler = () => {
-    dispatch({ type: 'toggle' });
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
